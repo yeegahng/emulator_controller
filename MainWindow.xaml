@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="Emulator_Controller.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Emulator_Controller"
+	Loaded="Window_Loaded"
+	Closing="Window_Closing"
+	Height="640"
+	Width="640">
+	<Grid>
+		<Button Content="Initialize library" HorizontalAlignment="Left" Margin="20,20,0,0" Name="initButton" VerticalAlignment="Top" Height="Auto" Width="97" Click="initButton_Click" />
+		
+		<!-- BEGIN: channelControlPanel area -->
+		<TextBlock Name="channelLabel" Text="Channel:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="Auto" Margin="20,53,0,0" />
+		<TextBox Name="channelBox" Text="0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="37" Height="Auto" Margin="75,50,0,0" PreviewTextInput="CheckTextBox" IsEnabled="false" />
+		<ComboBox Name="channelComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Height="Auto" Margin="75,50,0,0" SelectedIndex="0" IsEnabled="false">
+			<ComboBoxItem Name="channel1" Content="Ch.1"/>
+			<ComboBoxItem Name="channel2" Content="Ch.2"/>
+		</ComboBox>
+		<Button Name="openChannelButton" Content="Open Channel" Height="Auto" HorizontalAlignment="Left" Margin="140,50,0,0" VerticalAlignment="Top" Width="100" Click="openChannelButton_Click" IsEnabled="false" />
+		<Button Name="closeChannelButton" Content="Close Channel" Height="Auto" HorizontalAlignment="Left" Margin="250,50,0,0" VerticalAlignment="Top" Width="100" Click="closeChannelButton_Click" IsEnabled="false" />
+		<!-- END: channelControlPanel area -->
+
+		<!-- BEGIN: busControlPanel area -->
+		<TextBlock Name="bitrateText" Text="Bitrate:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Margin="20,83,0,0" />
+		<ComboBox HorizontalAlignment="Left" Margin="67,80,0,0" Name="bitrateComboBox" VerticalAlignment="Top" Height="Auto" Width="75" SelectedIndex="2" IsEnabled="false" >
+			<ComboBoxItem Content="125 kbps" Name="bitrate_125kItem" />
+			<ComboBoxItem Content="250 kbps" Name="bitrate_250kItem" />
+			<ComboBoxItem Content="500 kbps" Name="bitrate_500kItem" />
+			<ComboBoxItem Content="1 Mbps" Name="bitrate_1MItem" />
+		</ComboBox>
+		<Button Content="Bus On" Height="Auto" HorizontalAlignment="Left" Margin="160,80,0,0" Name="busOnButton" VerticalAlignment="Top" Width="89" Click="busOnButton_Click" IsEnabled="false" />
+		<Button Content="Bus Off" Height="Auto" HorizontalAlignment="Left" Margin="260,80,0,0" Name="busOffButton" VerticalAlignment="Top" Width="89" Click="busOffButton_Click" IsEnabled="false" />
+		<!-- END: busControlPanel area -->
+
+		<Button Name="buildMessageButton" Content="Build Control Message" HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="Auto" Padding="10" Click="buildMessageButton_Click" IsEnabled="false" />
+
+		<!-- BEGIN: messageFieldPanel area -->
+		<TextBlock Name="idLabel" Height="23" HorizontalAlignment="Left" Margin="20,180,0,0" Text="ID:" VerticalAlignment="Top" />
+		<TextBox Name="idBox" Height="23" HorizontalAlignment="Left" Margin="20,200,0,0" Text="" VerticalAlignment="Top" Width="36" PreviewTextInput="CheckTextBox" />
+		<TextBlock Name="DLCLabel" Height="23" HorizontalAlignment="Left" Margin="70,180,0,0" Text="DLC:" VerticalAlignment="Top" />
+		<TextBox Name="DLCBox" Height="23" HorizontalAlignment="Left" Margin="70,200,0,0" Text="" VerticalAlignment="Top" Width="20" PreviewTextInput="CheckTextBox" MaxLength="1" />
+		<TextBlock Name="dataLabel" Height="26" HorizontalAlignment="Left" Margin="110,180,0,0" Text="Data:" VerticalAlignment="Top" />
+		<StackPanel Name="canDataBoxPanel" Margin="110,200,0,0" Height="Auto" Width="Auto" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" />   
+		<Button Name="sendMessageButton" Content="Send Message" Height="46" HorizontalAlignment="Right" Margin="0,180,80,0" VerticalAlignment="Top" Width="Auto" Padding="10" Click="sendMessageButton_Click" IsEnabled="false" />
+		<Button Name="clearMessageButton" Content="Clear" Height="46" HorizontalAlignment="Right" Margin="0,180,20,0" VerticalAlignment="Top" Width="Auto" Padding="10" Click="clearMessageButton_Click" IsEnabled="false" />
+		<!-- END: messageFieldPanel area -->
+		
+		<StatusBar Name="statusBar" Height="23" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="800" >
+			<StatusBarItem>
+				<TextBlock Name="statusText"/>
+			</StatusBarItem>
+		</StatusBar>
+
+		<TextBlock Name="outputLogLabel" Height="Auto" HorizontalAlignment="Left" Margin="20,0,0,340" Text="Log spew: " VerticalAlignment="Bottom" Padding="3"/>
+		<RichTextBox Name="outputLogTextBox" Height="300" HorizontalAlignment="Left" Margin="20,0,0,40" VerticalAlignment="Bottom" Width="590" VerticalScrollBarVisibility="Visible" IsReadOnly="True" />
+
+		<TextBlock Name="messageOptionLabel" Height="23" Margin="20,530,0,0" Text="Flags:" Visibility="Hidden" />
+		<StackPanel Name="messageOptionCheckboxPanel" Height="30" Width="700" HorizontalAlignment="Left" Margin="20,550,0,0" Orientation="Horizontal" Visibility="Hidden">
+			<CheckBox Content="Remote" Height="16" Margin="0,0,0,0" Name="RTRBox" Tag="1" />
+			<CheckBox Content="STD" Height="16" Margin="0,0,0,0" Name="STDBox" Tag="2" />
+			<CheckBox Content="EXT" Height="16" Margin="0,0,0,0" Name="EXTBox" Tag="4" />
+			<CheckBox Content="WakeUp" Height="16" Margin="0,0,0,0" Name="WakeUpBox" Tag="8" />
+			<CheckBox Content="NERR" Height="16" Margin="0,0,0,0" Name="NERRBox" Tag="16" />
+			<CheckBox Content="Error" Height="16" Margin="0,0,0,0" Name="errorBox" Tag="32" />
+			<CheckBox Content="TXACK" Height="16" Margin="0,0,0,0" Name="TXACKBox" Tag="64" />
+			<CheckBox Content="TXRQ" Height="16" Margin="0,0,0,0" Name="TXRQBox" Tag="128" />
+			<CheckBox Content="Delay" Height="16" Margin="0,0,0,0" Name="delayBox" Tag="256" />
+			<CheckBox Content="EDL" Height="16" Margin="0,0,0,0" Name="EDLBox" Tag="65536" />
+			<CheckBox Content="BRS" Height="16" Margin="0,0,0,0" Name="BRSBox" Tag="131072" />
+			<CheckBox Content="ESI" Height="16" Margin="0,0,0,0" Name="ESIBox" Tag="262144" />
+		</StackPanel>
+	
+		<Image Source="/Resources/image.png" Margin="200,20,0,0" Width="30" Height="30" />
+	</Grid>
+</Window>
