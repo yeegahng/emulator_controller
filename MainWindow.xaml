@@ -69,7 +69,5 @@
 			<CheckBox Content="BRS" Height="16" Margin="0,0,0,0" Name="BRSBox" Tag="131072" />
 			<CheckBox Content="ESI" Height="16" Margin="0,0,0,0" Name="ESIBox" Tag="262144" />
 		</StackPanel>
-	
-		<Image Source="/Resources/image.png" Margin="200,20,0,0" Width="30" Height="30" />
 	</Grid>
 </Window>

@@ -19,7 +19,7 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
-    <ApplicationIcon>C:\Users\LGRnD\Pictures\Zerode-Plump-Control-Panel.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Zerode-Plump-Control-Panel.ico</ApplicationIcon>
     <RunCodeAnalysis>False</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
@@ -108,6 +108,7 @@
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="MessageBuilderWindow.xaml" />
+    <Page Include="Resources.xaml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

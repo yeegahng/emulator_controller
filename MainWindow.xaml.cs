@@ -36,6 +36,8 @@ namespace Emulator_Controller
         private readonly BackgroundWorker messageReceiver;
         TextBox[] canDataBoxes = null;
         const int CAN_DATA_BOX_NUM = 8;
+        
+        StringBuilder logStrBuilder = new StringBuilder();
 
         public MainWindow()
         {
@@ -299,7 +301,9 @@ namespace Emulator_Controller
         	switch(progress)
         	{
 				case ReceiverReport.REPORT_RUNNING:
-					LogOutput((string)e.UserState);
+					//LogOutput((string)e.UserState);
+					//Console.WriteLine("{0}", (string)e.UserState);
+					logStrBuilder.Append("\n" + DateTime.Now + " : " + (string)e.UserState);
 					break;
 					
 				case ReceiverReport.ERROR_STOP:
