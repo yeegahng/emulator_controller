@@ -69,14 +69,14 @@ namespace Emulator_Controller
             messageReceiver.ProgressChanged += new ProgressChangedEventHandler(this.Process_readerMessageProgress);
         }
         
-        void Window_Loaded(object sender, RoutedEventArgs e)
+        void onWindowLoaded(object sender, RoutedEventArgs e)
         {
             statusText.Text = "CAN channel Not initialized";
         }
         
-		void Window_Closing(object sender, CancelEventArgs e)
+		void onWindowClosing(object sender, CancelEventArgs e)
 		{
-			this.Resources.Clear();
+			EmulMessageBuilder.GetBuilder().DestroyBuilder();
 		}
 
         //Initializes Canlib

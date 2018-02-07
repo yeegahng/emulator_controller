@@ -85,6 +85,14 @@ namespace Emulator_Controller
 			return msgBuilderInstance;
 		}
 		
+		public void DestroyBuilder()
+		{
+			message = null;
+			builderWindow.Close();
+			builderWindow = null;
+			msgBuilderInstance = null;
+		}
+		
 		public EmulatorResult BuildMessageWithSelectedOptions(ref EmulMessage msg)
 		{
 			builderWindow.ShowDialog();

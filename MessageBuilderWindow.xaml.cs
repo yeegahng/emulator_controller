@@ -162,16 +162,24 @@ namespace Emulator_Controller
 			valueInputPanel.Children.Add(valueInputBox2);
 		}
 		
-		void onLoadWindow(object sender, RoutedEventArgs e)
+		void onWindowLoaded(object sender, RoutedEventArgs e)
 		{
 			this.windowStatus = WindowStatus.OPENED;
 		}
 		
-		void onClosingWindow(object sender, System.ComponentModel.CancelEventArgs e)
+		void onWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			e.Cancel = true; //Do not close but hide the window (not to lose resource allocation)
-			this.Visibility = Visibility.Hidden;
-			this.windowStatus = WindowStatus.CANCEL_CLOSED;
+			if(this.windowStatus == WindowStatus.OPENED)
+			{
+				// Do not close but hide the window (not to lose resource allocation)
+				e.Cancel = true;
+				this.Visibility = Visibility.Hidden;
+				this.windowStatus = WindowStatus.CANCEL_CLOSED; //Builder window was closed without generating a new message. Regard this as cancellation.
+			}
+			else
+			{
+				//Let it close. (case of window destroy when MainWindow closes)
+			}
 		}
 		
 		void rackIdAllFlagBox_Click(object sender, RoutedEventArgs e)
@@ -372,6 +380,7 @@ namespace Emulator_Controller
 				return;
 			}
 			
+			// Do not close but hide the window (not to lose resource allocation)
 			this.Visibility = Visibility.Hidden;
 			this.windowStatus = WindowStatus.NORMALLY_CLOSED;
 		}
