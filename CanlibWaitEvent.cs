@@ -12,7 +12,7 @@ namespace EmulatorController
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="we"></param>
+    /// <param name="Is this really necessary to replace WaitHandle?"></param>
     public CanlibWaitEvent(object we)
     {
       SafeWaitHandle swHandle = new SafeWaitHandle(/*pointer*/ (IntPtr)we, true);

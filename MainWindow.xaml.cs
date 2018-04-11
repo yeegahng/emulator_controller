@@ -230,6 +230,18 @@ namespace Emulator_Controller
             	worker.ReportProgress((int)ReceiverReport.ERROR_STOP, status);
                 noError = false;
             }
+            status = Canlib.canAccept(readHandle, 0x610, Canlib.canFILTER_SET_CODE_STD);
+            if (status != Canlib.canStatus.canOK)
+            {
+            	worker.ReportProgress((int)ReceiverReport.ERROR_STOP, status);
+                noError = false;
+            }
+            status = Canlib.canAccept(readHandle, 0xFFE, Canlib.canFILTER_SET_MASK_STD);
+            if (status != Canlib.canStatus.canOK)
+            {
+            	worker.ReportProgress((int)ReceiverReport.ERROR_STOP, status);
+                noError = false;
+            }
 
             WaitHandle waitHandle = (WaitHandle) new CanlibWaitEvent(winHandle);
 
@@ -301,7 +313,7 @@ namespace Emulator_Controller
         	switch(progress)
         	{
 				case ReceiverReport.REPORT_RUNNING:
-					//LogOutput((string)e.UserState);
+					LogOutput((string)e.UserState);
 					//Console.WriteLine("{0}", (string)e.UserState);
 					logStrBuilder.Append("\n" + DateTime.Now + " : " + (string)e.UserState);
 					break;
@@ -451,6 +463,7 @@ namespace Emulator_Controller
             {
         		box.Clear();
             }
+        	outputLogTextBox.Document.Blocks.Clear();
         }
         
         /* This method isn't working yet */

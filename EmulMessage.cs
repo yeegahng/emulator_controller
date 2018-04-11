@@ -66,7 +66,7 @@ namespace Emulator_Controller
 		private Dictionary<EmulatorCommandType, Func<EmulatorCommandType, EmulMessage, int>> cmdTypeFuncMap
 			= new Dictionary<EmulatorCommandType, Func<EmulatorCommandType, EmulMessage, int>>();
 		private EmulMessage message = null;
-		private readonly MessageBuilderWindow builderWindow = new MessageBuilderWindow();
+		private MessageBuilderWindow builderWindow = new MessageBuilderWindow();
 		
 		private EmulMessageBuilder()
 		{
